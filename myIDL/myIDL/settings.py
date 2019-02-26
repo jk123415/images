@@ -65,8 +65,8 @@ DOWNLOADER_MIDDLEWARES = {
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    'myIDL.pipelines.UserAgent': 10,
-    'myIDL.pipelines.MyidlPipeline': 20,
+    #'myIDL.pipelines.UserAgent': 10,
+    #'myIDL.pipelines.MyidlPipeline': 20,
     'myIDL.pipelines.MyImagesPipeline': 30,
 }
 
