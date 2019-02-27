@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import scrapy
-from scrapy.spiders import CrawlSpider
 from scrapy.linkextractors import LinkExtractor
 from imgs.items import ImgsItem
+from scrapy.spiders import CrawlSpider, Rule
 
 
 class BasicSpider(CrawlSpider):
@@ -10,7 +10,7 @@ class BasicSpider(CrawlSpider):
     allowed_domains = ["www.mm131.com"]
     start_urls = ['http://www.mm131.com']
     rules = (
-        Rule(LinkExtractor(allow=r'www\.mm131\.com'), callback='parse_item')
+        Rule(LinkExtractor(allow=r'www\.mm131\.com'), callback='parse_item'),
         )
 
     def parse_item(self, response):
@@ -20,5 +20,4 @@ class BasicSpider(CrawlSpider):
         yield item
         next_url = response.css(".page-ch:last-child::attr(href)").get()
         if next_url is not None:
-            pass
             yield response.follow(next_url, callback=self.parse)

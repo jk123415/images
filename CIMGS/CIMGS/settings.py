@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for imgs project
+# Scrapy settings for CIMGS project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,24 +9,14 @@
 #     https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'imgs'
+BOT_NAME = 'CIMGS'
 
-SPIDER_MODULES = ['imgs.spiders']
-NEWSPIDER_MODULE = 'imgs.spiders'
+SPIDER_MODULES = ['CIMGS.spiders']
+NEWSPIDER_MODULE = 'CIMGS.spiders'
 
-# 设置图片存储路径
 IMAGES_STORE = 'D:\meizi2'
-#启动pipeline中间件
-ITEM_PIPELINES = {
-   'imgs.pipelines.MyUserAgent': 100,
-   'imgs.pipelines.MyImagesPipeline': 300,
-}
-
-DOWNLOADER_MIDDLEWARES = {
-   'imgs.middlewares.AoisolasSpiderMiddleware': 1,
-}
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'imgs (+http://www.yourdomain.com)'
+#USER_AGENT = 'CIMGS (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
@@ -57,14 +47,14 @@ ROBOTSTXT_OBEY = False
 # Enable or disable spider middlewares
 # See https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'imgs.middlewares.ImgsSpiderMiddleware': 543,
+#    'CIMGS.middlewares.CimgsSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    'imgs.middlewares.ImgsDownloaderMiddleware': 543,
-#}
+DOWNLOADER_MIDDLEWARES = {
+    'CIMGS.middlewares.CimgsDownloaderMiddleware': 543,
+}
 
 # Enable or disable extensions
 # See https://doc.scrapy.org/en/latest/topics/extensions.html
@@ -74,9 +64,11 @@ ROBOTSTXT_OBEY = False
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'imgs.pipelines.ImgsPipeline': 300,
-#}
+ITEM_PIPELINES = {
+    # 'CIMGS.pipelines.CimgsPipeline': 300,
+    'CIMGS.pipelines.MyUserAgent': 100,
+    'CIMGS.pipelines.MyImagesDownPipline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html
